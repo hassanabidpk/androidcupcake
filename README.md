@@ -25,12 +25,12 @@ This app uses the Gradle build system. To build this project, use the
 Screenshots
 -----------
 
-![AndroidMain](images/androdi_app_main.png "android_list")
+![AndroidMain](images/android_app_main.jpeg "android_list")
 
 
 
 
-![AndroidMain](images/androdi_app_detail.png "android_list")
+![AndroidMain](images/android_app_detail.jpeg "android_list")
 
 TO-DO
 ---------------
