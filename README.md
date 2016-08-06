@@ -2,14 +2,19 @@ Android Cupcake App
 =====================================
 **Inspired from [Cupcake](https://developer.android.com/about/versions/android-1.5.html) version 1.5**
 
+[![Build Status](https://travis-ci.org/hassanabidpk/androidcupcake.svg?branch=master)](https://travis-ci.org/hassanabidpk/androidcupcake)
+
 This sample demonstrates usage of Django Rest Api for [Django Cupcakeshop tutorial](https://github.com/DjangoGirlsSeoul/djangocupcakeshop)
 
 ![Cupcake](images/android_cup_cake.JPG "")
 
-Pre-requisites
+Pre-requisites & Libraries
 --------------
 
 - Android SDK v19
+- Realm
+- Retrofit
+- Data Binding
 
 Getting Started
 ---------------
@@ -17,6 +22,20 @@ Getting Started
 This app uses the Gradle build system. To build this project, use the
 "gradlew build" command or use "Import Project" in Android Studio.
 
+Screenshots
+-----------
+
+![AndroidMain](images/androdi_app_main.png "android_list")
+
+
+
+
+![AndroidMain](images/androdi_app_detail.png "android_list")
+
+TO-DO
+---------------
+
+1. POST request
 
 License
 -------
