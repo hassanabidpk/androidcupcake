@@ -7,8 +7,8 @@ import retrofit2.http.Query;
 /**
  * Created by hassanabid on 8/5/16.
  */
-public interface CupcakeApi {
+public interface CupCakeApi {
 
     @GET("api/v1/cupcakes/")
-    Call<CupcakeResponse[]> getCupcakesList(@Query("format") String format);
+    Call<CupCakeResponse[]> getCupcakesList(@Query("format") String format);
 }

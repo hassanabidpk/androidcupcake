@@ -12,24 +12,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.hassanabid.androidcupcake.CupcakeListActivity;
+import com.hassanabid.androidcupcake.CupCakeListActivity;
 import com.hassanabid.androidcupcake.R;
-import com.hassanabid.androidcupcake.activities.CupcakeDetailActivity;
+import com.hassanabid.androidcupcake.activities.CupCakeDetailActivity;
 import com.hassanabid.androidcupcake.databinding.CupcakeDetailBinding;
-import com.hassanabid.androidcupcake.model.Cupcake;
+import com.hassanabid.androidcupcake.model.CupCake;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
  * A fragment representing a single cupcake detail screen.
- * This fragment is either contained in a {@link CupcakeListActivity}
- * in two-pane mode (on tablets) or a {@link CupcakeDetailActivity}
+ * This fragment is either contained in a {@link CupCakeListActivity}
+ * in two-pane mode (on tablets) or a {@link CupCakeDetailActivity}
  * on handsets.
  */
-public class CupcakeDetailFragment extends Fragment {
+public class CupCakeDetailFragment extends Fragment {
 
-    private static final String LOG_TAG = CupcakeDetailFragment.class.getSimpleName();
+    private static final String LOG_TAG = CupCakeDetailFragment.class.getSimpleName();
 
     public static final String ARG_NAME_ID = "item_name_id";
     public static final String ARG_IMAGE_ID = "item_image_id";
@@ -40,13 +40,13 @@ public class CupcakeDetailFragment extends Fragment {
 
     private String mTitle;
     private String mImageURL;
-    private Cupcake cake;
+    private CupCake cake;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CupcakeDetailFragment() {
+    public CupCakeDetailFragment() {
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CupcakeDetailFragment extends Fragment {
 
             mTitle = getArguments().getString(ARG_NAME_ID);
             mImageURL = getArguments().getString(ARG_IMAGE_ID);
-            cake = realm.where(Cupcake.class).equalTo("name", mTitle).findFirst();
+            cake = realm.where(CupCake.class).equalTo("name", mTitle).findFirst();
             if(cake != null)
                 Log.d(LOG_TAG,"realm object retrieved : " + cake.getName());
 
@@ -88,7 +88,7 @@ public class CupcakeDetailFragment extends Fragment {
 //        }
 
         if(mImageURL != null) {
-            loadBackdrop(CupcakeListActivity.API_URL_PROD  + mImageURL,rootView);
+            loadBackdrop(CupCakeListActivity.API_URL_PROD  + mImageURL,rootView);
         } else {
             Log.d(LOG_TAG,"imageurl is null");
         }

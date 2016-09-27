@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by hassanabid on 8/6/16.
  */
-public class Cupcake extends RealmObject {
+public class CupCake extends RealmObject {
 
     public String name;
     public String price;

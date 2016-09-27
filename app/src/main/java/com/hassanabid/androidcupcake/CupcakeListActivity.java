@@ -20,11 +20,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.hassanabid.androidcupcake.activities.CupcakeDetailActivity;
-import com.hassanabid.androidcupcake.api.CupcakeApi;
-import com.hassanabid.androidcupcake.api.CupcakeResponse;
-import com.hassanabid.androidcupcake.fragments.CupcakeDetailFragment;
-import com.hassanabid.androidcupcake.model.Cupcake;
+import com.hassanabid.androidcupcake.activities.CupCakeDetailActivity;
+import com.hassanabid.androidcupcake.api.CupCakeApi;
+import com.hassanabid.androidcupcake.api.CupCakeResponse;
+import com.hassanabid.androidcupcake.fragments.CupCakeDetailFragment;
+import com.hassanabid.androidcupcake.model.CupCake;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,18 +43,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * An activity representing a list of cupcakes. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link CupcakeDetailActivity} representing
+ * lead to a {@link CupCakeDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class CupcakeListActivity extends AppCompatActivity {
+public class CupCakeListActivity extends AppCompatActivity {
 
 
-    private static final String LOG_TAG = CupcakeListActivity.class.getSimpleName();
+    private static final String LOG_TAG = CupCakeListActivity.class.getSimpleName();
     public static final String API_URL = "http://127.0.0.1:8000";
     public static final String API_URL_PROD = "https://djangocupcakeshop.azurewebsites.net";
 
-    private List<CupcakeResponse> mCupcakeList;
+    private List<CupCakeResponse> mCupcakeList;
     private ProgressBar progessBar;
     private TextView emptyTextView;
     private View recyclerView;
@@ -94,7 +94,7 @@ public class CupcakeListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.cupcake_list);
         assert recyclerView != null;
-        final RealmResults<Cupcake> cupCakes = getRealmResults();
+        final RealmResults<CupCake> cupCakes = getRealmResults();
         if(cupCakes.size() == 0) {
             initiateCupcakeApi(recyclerView);
         }
@@ -111,7 +111,7 @@ public class CupcakeListActivity extends AppCompatActivity {
         }
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView, RealmResults<Cupcake> results) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, RealmResults<CupCake> results) {
         progessBar.setVisibility(View.GONE);
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(results));
     }
@@ -119,8 +119,8 @@ public class CupcakeListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final RealmResults<Cupcake> mRealmObjects;
-        public SimpleItemRecyclerViewAdapter(RealmResults<Cupcake> realmObjects) {
+        private final RealmResults<CupCake> mRealmObjects;
+        public SimpleItemRecyclerViewAdapter(RealmResults<CupCake> realmObjects) {
             mRealmObjects = realmObjects;
         }
 
@@ -147,19 +147,19 @@ public class CupcakeListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(CupcakeDetailFragment.ARG_NAME_ID, holder.mRealmObject.getName());
-                        arguments.putString(CupcakeDetailFragment.ARG_IMAGE_ID,holder.mRealmObject.getImage());
+                        arguments.putString(CupCakeDetailFragment.ARG_NAME_ID, holder.mRealmObject.getName());
+                        arguments.putString(CupCakeDetailFragment.ARG_IMAGE_ID,holder.mRealmObject.getImage());
 
-                        CupcakeDetailFragment fragment = new CupcakeDetailFragment();
+                        CupCakeDetailFragment fragment = new CupCakeDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.cupcake_detail_container, fragment)
                                 .commit();
                     } else {
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, CupcakeDetailActivity.class);
-                        intent.putExtra(CupcakeDetailFragment.ARG_NAME_ID, holder.mRealmObject.getName());
-                        intent.putExtra(CupcakeDetailFragment.ARG_IMAGE_ID, holder.mRealmObject.getImage());
+                        Intent intent = new Intent(context, CupCakeDetailActivity.class);
+                        intent.putExtra(CupCakeDetailFragment.ARG_NAME_ID, holder.mRealmObject.getName());
+                        intent.putExtra(CupCakeDetailFragment.ARG_IMAGE_ID, holder.mRealmObject.getImage());
 
                         context.startActivity(intent);
                     }
@@ -176,7 +176,7 @@ public class CupcakeListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mTitle;
             public final ImageView mImage;
-            public Cupcake mRealmObject;
+            public CupCake mRealmObject;
 
             public ViewHolder(View view) {
                 super(view);
@@ -200,13 +200,13 @@ public class CupcakeListActivity extends AppCompatActivity {
                 .baseUrl(API_URL_PROD)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        CupcakeApi api = retrofit.create(CupcakeApi.class);
-        Call<CupcakeResponse[]> call = api.getCupcakesList("json");
+        CupCakeApi api = retrofit.create(CupCakeApi.class);
+        Call<CupCakeResponse[]> call = api.getCupcakesList("json");
         progessBar.setVisibility(View.VISIBLE);
 
-        call.enqueue(new Callback<CupcakeResponse[]>() {
+        call.enqueue(new Callback<CupCakeResponse[]>() {
             @Override
-            public void onResponse(Call<CupcakeResponse[]> call, Response<CupcakeResponse[]> response) {
+            public void onResponse(Call<CupCakeResponse[]> call, Response<CupCakeResponse[]> response) {
 
                 if (response.isSuccessful()) {
                     Log.d(LOG_TAG, "success - response is " + response.body());
@@ -221,7 +221,7 @@ public class CupcakeListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CupcakeResponse[]> call, Throwable t) {
+            public void onFailure(Call<CupCakeResponse[]> call, Throwable t) {
                 Log.e(LOG_TAG, " Error :  " + t.getMessage());
             }
 
@@ -229,7 +229,7 @@ public class CupcakeListActivity extends AppCompatActivity {
 
     }
 
-    private void executeRealmWriteTransaction (final List<CupcakeResponse> cupcakeList) {
+    private void executeRealmWriteTransaction (final List<CupCakeResponse> cupcakeList) {
 
         Log.d(LOG_TAG,"saveRealmObjects : " + cupcakeList.size());
         mRealm.executeTransactionAsync(new Realm.Transaction() {
@@ -238,7 +238,7 @@ public class CupcakeListActivity extends AppCompatActivity {
 
                 for (int i = 0; i < cupcakeList.size(); i++) {
 
-                    Cupcake cake = realm.createObject(Cupcake.class);
+                    CupCake cake = realm.createObject(CupCake.class);
                     cake.setName(cupcakeList.get(i).name);
                     cake.setRating(cupcakeList.get(i).rating);
                     cake.setPrice(cupcakeList.get(i).price);
@@ -265,9 +265,9 @@ public class CupcakeListActivity extends AppCompatActivity {
         });
     }
 
-    private RealmResults<Cupcake> getRealmResults() {
+    private RealmResults<CupCake> getRealmResults() {
 
-        RealmResults<Cupcake> sortedCakes = mRealm.where(Cupcake.class).findAllSorted("rating", Sort.DESCENDING);
+        RealmResults<CupCake> sortedCakes = mRealm.where(CupCake.class).findAllSorted("rating", Sort.DESCENDING);
         Log.d(LOG_TAG,"getRealmResults : " + sortedCakes.size());
         return sortedCakes;
     }
@@ -277,7 +277,7 @@ public class CupcakeListActivity extends AppCompatActivity {
         mRealm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                realm.delete(Cupcake.class);
+                realm.delete(CupCake.class);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override

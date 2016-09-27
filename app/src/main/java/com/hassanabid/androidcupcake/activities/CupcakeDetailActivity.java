@@ -10,17 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import com.hassanabid.androidcupcake.fragments.CupcakeDetailFragment;
-import com.hassanabid.androidcupcake.CupcakeListActivity;
+import com.hassanabid.androidcupcake.fragments.CupCakeDetailFragment;
+import com.hassanabid.androidcupcake.CupCakeListActivity;
 import com.hassanabid.androidcupcake.R;
 
 /**
  * An activity representing a single cupcake detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link CupcakeListActivity}.
+ * in a {@link CupCakeListActivity}.
  */
-public class CupcakeDetailActivity extends AppCompatActivity {
+public class CupCakeDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +57,11 @@ public class CupcakeDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(CupcakeDetailFragment.ARG_NAME_ID,
-                    getIntent().getStringExtra(CupcakeDetailFragment.ARG_NAME_ID));
-            arguments.putString(CupcakeDetailFragment.ARG_IMAGE_ID,
-                    getIntent().getStringExtra(CupcakeDetailFragment.ARG_IMAGE_ID));
-            CupcakeDetailFragment fragment = new CupcakeDetailFragment();
+            arguments.putString(CupCakeDetailFragment.ARG_NAME_ID,
+                    getIntent().getStringExtra(CupCakeDetailFragment.ARG_NAME_ID));
+            arguments.putString(CupCakeDetailFragment.ARG_IMAGE_ID,
+                    getIntent().getStringExtra(CupCakeDetailFragment.ARG_IMAGE_ID));
+            CupCakeDetailFragment fragment = new CupCakeDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.cupcake_detail_container, fragment)
@@ -79,7 +79,7 @@ public class CupcakeDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, CupcakeListActivity.class));
+            navigateUpTo(new Intent(this, CupCakeListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

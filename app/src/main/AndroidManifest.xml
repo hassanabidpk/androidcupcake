@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CupcakeListActivity"
+            android:name=".CupCakeListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CupcakeDetailActivity"
+            android:name=".activities.CupCakeDetailActivity"
             android:label="@string/title_cupcake_detail"
-            android:parentActivityName=".CupcakeListActivity"
+            android:parentActivityName=".CupCakeListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CupcakeListActivity" />
+                android:value=".CupCakeListActivity" />
         </activity>
     </application>
 
